@@ -21,7 +21,7 @@
   <div class="wrap">
     <div class="brand">✦ Aurelia</div>
     <h1>Privacy Policy</h1>
-    <div class="sub">Last updated: July 30, 2026</div>
+    <div class="sub">Last updated: October 31, 2026</div>
 
     <p>Aurelia ("we", "us") provides an AI-powered aura color reading from selfies. This policy explains what we collect and how we use it.</p>
 
@@ -29,7 +29,8 @@
     <ul>
       <li><strong>Photos (including facial images):</strong> Selfies you capture or photos you select are sent for AI analysis to generate your aura reading. An image is only stored if you choose to save a reading to your history.</li>
       <li><strong>Account data:</strong> Email address (and, for social sign-in, basic profile info) used for authentication.</li>
-      <li><strong>Usage data:</strong> Basic, non-identifying app activity used to improve performance.</li>
+      <li><strong>Usage and diagnostics:</strong> counts of steps in the app (for example opening the camera, completing a reading or opening the subscription screen) and crash and error reports, linked to an anonymous account ID. They tell us where the app breaks or where people get stuck.</li>
+      <li><strong>Feedback you send:</strong> your message, its category, an optional contact email, and the app version and device model, so we can reply and fix the problem.</li>
     </ul>
 
     <h2>2. Face &amp; Photo Data</h2>
@@ -38,8 +39,9 @@
       <li><strong>What we collect:</strong> the photo (image) itself. We do <strong>not</strong> create a faceprint or biometric template, and we do <strong>not</strong> perform facial recognition or identify you.</li>
       <li><strong>How it is used:</strong> solely to generate an entertainment "aura color" reading. It is not used for advertising, tracking, or any purpose other than producing your reading.</li>
       <li><strong>Consent:</strong> before your first analysis, the app asks for your explicit permission to send your selfie to our AI provider. Analysis does not happen unless you agree.</li>
-      <li><strong>Who it is shared with:</strong> the image is sent to OpenAI for analysis, and (only if you save the reading) stored on Cloudflare R2 and referenced in our Supabase database. It is not shared with anyone else.</li>
-      <li><strong>Retention &amp; deletion:</strong> images used only for analysis are not permanently retained. A saved reading and its image remain until you delete that reading or your account, both of which permanently remove it.</li>
+      <li><strong>Who it is shared with:</strong> the image is sent to OpenAI for analysis, through Cloudflare's AI Gateway, which forwards the request and is configured not to log its content. Only if you save the reading is the image stored on Cloudflare R2 and referenced in our Supabase database. It is not shared with anyone else.</li>
+      <li><strong>Photo fingerprint:</strong> so that the same photo always gets the same reading, we keep a short fingerprint of each analysed photo (a cryptographic hash and a 64-bit visual hash) together with its reading. A fingerprint cannot be turned back into the photo and is not a faceprint or biometric template.</li>
+      <li><strong>Retention &amp; deletion:</strong> images used only for analysis are not permanently retained. A saved reading and its image remain until you delete that reading or your account. Photo fingerprints remain until you delete your account.</li>
     </ul>
 
     <h2>3. How We Use Your Information</h2>
@@ -53,16 +55,17 @@
     <p>We share data only as needed with the providers below. Each is contractually required to protect your data with the same or equal protection described in this policy, and none is permitted to use your data for their own purposes.</p>
     <ul>
       <li><strong>OpenAI</strong> — receives the selfie image you submit in order to generate your aura reading. This is the third-party AI service that analyzes your photo. OpenAI does not use data submitted through its API to train its models.</li>
-      <li><strong>Supabase</strong> — authentication and database (stores your account and saved-reading records).</li>
-      <li><strong>Cloudflare R2</strong> — storage of images from readings you choose to save.</li>
+      <li><strong>Cloudflare</strong> — AI Gateway forwards analysis requests to OpenAI without logging their content; R2 stores images from readings you choose to save.</li>
+      <li><strong>Supabase</strong> — authentication and database (stores your account, saved readings, photo fingerprints, monthly usage counts and feedback messages).</li>
       <li><strong>RevenueCat</strong> — subscription management.</li>
+      <li><strong>Sentry</strong> — crash and error diagnostics and anonymous usage counts: error reports, stack traces, device/OS model, app version, the screens visited and buttons tapped leading up to a problem, and counts of app steps, linked to an anonymous account ID. It never receives your photos, email address or name.</li>
     </ul>
 
     <h2>5. Data Retention</h2>
-    <p>Images used only for analysis are not permanently stored. Readings (and their images) you explicitly save remain until you delete them or your account.</p>
+    <p>Images used only for analysis are not permanently stored. Readings (and their images) you explicitly save remain until you delete them or your account. Photo fingerprints and usage counts are deleted with your account. Feedback messages are kept after an account is deleted, no longer linked to it; ask us and we will delete them.</p>
 
     <h2>6. Your Rights</h2>
-    <p>You can delete any individual saved reading from within the app at any time. To delete your entire account and all associated data, contact us at <a href="mailto:hello@fabulalabs.net">hello@fabulalabs.net</a> (see our <a href="account-deletion.html">account deletion page</a>).</p>
+    <p>You can delete any individual saved reading from within the app at any time. To delete your entire account, go to <strong>Settings → Delete Account</strong> in the app: this permanently removes your account, your saved readings and their images, and your photo fingerprints. You can also ask us at <a href="mailto:hello@fabulalabs.net">hello@fabulalabs.net</a> (see our <a href="account-deletion.html">account deletion page</a>).</p>
 
     <h2>7. Children's Privacy</h2>
     <p>Aurelia is not directed to children under 13 (or the minimum age in your country). We do not knowingly collect data from children.</p>
